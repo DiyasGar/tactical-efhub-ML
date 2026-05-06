@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+   EFHub Design System — Tailwind CSS v4 Theme Configuration
+   Ported from the original static HTML Tailwind CDN config
+   ========================================================================== */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Brand Colors (Material 3 Midnight Theme) --- */
+  --color-efhub-midnight: #0A1128;
+  --color-efhub-navy: #050814;
+  --color-efhub-gold: #FFC107;
+  --color-efhub-gold-dark: #261a00;
+  --color-efhub-cyan: #00dbea;
+  --color-efhub-amber: #fabd00;
+
+  /* --- Material 3 Extended Palette --- */
+  --color-m3-primary: #bfc5e4;
+  --color-m3-on-primary: #292f48;
+  --color-m3-primary-container: #0a1128;
+  --color-m3-on-primary-container: #767c99;
+  --color-m3-primary-fixed: #dce1ff;
+  --color-m3-primary-fixed-dim: #bfc5e4;
+  --color-m3-on-primary-fixed: #141a32;
+  --color-m3-on-primary-fixed-variant: #3f465f;
+
+  --color-m3-secondary: #ffdf9e;
+  --color-m3-on-secondary: #3f2e00;
+  --color-m3-secondary-container: #fabd00;
+  --color-m3-on-secondary-container: #6a4e00;
+  --color-m3-secondary-fixed: #ffdf9e;
+  --color-m3-secondary-fixed-dim: #fabd00;
+  --color-m3-on-secondary-fixed: #261a00;
+  --color-m3-on-secondary-fixed-variant: #5b4300;
+
+  --color-m3-tertiary: #00dbea;
+  --color-m3-on-tertiary: #00363b;
+  --color-m3-tertiary-container: #001517;
+  --color-m3-on-tertiary-container: #008b94;
+  --color-m3-tertiary-fixed: #81f4ff;
+  --color-m3-tertiary-fixed-dim: #00dbea;
+  --color-m3-on-tertiary-fixed: #002022;
+  --color-m3-on-tertiary-fixed-variant: #004f55;
+
+  --color-m3-error: #ffb4ab;
+  --color-m3-on-error: #690005;
+  --color-m3-error-container: #93000a;
+  --color-m3-on-error-container: #ffdad6;
+
+  --color-m3-background: #111415;
+  --color-m3-on-background: #e1e3e4;
+  --color-m3-surface: #111415;
+  --color-m3-on-surface: #e1e3e4;
+  --color-m3-surface-dim: #111415;
+  --color-m3-surface-bright: #373a3b;
+  --color-m3-surface-variant: #323536;
+  --color-m3-on-surface-variant: #c6c6ce;
+  --color-m3-surface-tint: #bfc5e4;
+  --color-m3-surface-container-lowest: #0c0f10;
+  --color-m3-surface-container-low: #191c1d;
+  --color-m3-surface-container: #1d2021;
+  --color-m3-surface-container-high: #282a2b;
+  --color-m3-surface-container-highest: #323536;
+
+  --color-m3-outline: #909098;
+  --color-m3-outline-variant: #46464d;
+  --color-m3-inverse-surface: #e1e3e4;
+  --color-m3-inverse-on-surface: #2e3132;
+  --color-m3-inverse-primary: #575d78;
+
+  /* --- Font Families --- */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Lexend", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ==========================================================================
+   Google Fonts — loaded via <link> in layout.tsx (next/font/google)
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-efhub-midnight);
+  color: var(--color-m3-on-surface);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-efhub-cyan);
+  color: var(--color-m3-tertiary-container);
+}
+
+/* ==========================================================================
+   Custom Utility Classes
+   ========================================================================== */
+
+/* Glass Panel — Level 1 (default sidebar/card) */
+.glass-panel {
+  background-color: rgba(10, 17, 40, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Panel — Level 1 (cards, recommender) */
+.glass-panel-level-1 {
+  background-color: rgba(10, 17, 40, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Panel — Hover Effect */
+.glass-panel-hover:hover {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: #00dbea;
+}
+
+/* Glass Panel — Level 2 (elevated modals) */
+.glass-panel-level-2 {
+  background-color: rgba(20, 30, 60, 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* AI Pulse Glow */
+.ai-pulse {
+  box-shadow: 0 0 15px rgba(0, 219, 234, 0.3);
+}
+
+/* Server Status Dot Pulse */
+.pulse-dot {
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* ==========================================================================
+   Custom Scrollbar (Webkit)
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 17, 40, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 219, 234, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 219, 234, 0.6);
 }
