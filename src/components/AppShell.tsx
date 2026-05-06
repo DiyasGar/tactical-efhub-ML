@@ -56,7 +56,7 @@ function TopAppBar() {
     setIsSearching(true);
     const timer = setTimeout(async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/search-players?q=${encodeURIComponent(searchQuery)}`);
+        const res = await fetch(`https://pratamuy-efhub-backend-api.hf.space/search-players?q=${encodeURIComponent(searchQuery)}`);
         const data = await res.json();
         if (data.status === "success" && data.results) {
           setSearchResults(data.results);
@@ -165,10 +165,9 @@ function SideNav() {
                 flex items-center gap-3 px-3 py-3 rounded-lg
                 font-[var(--font-display)] text-sm uppercase tracking-wider
                 transition-all duration-200
-                ${
-                  isActive
-                    ? "text-cyan-400 border-r-2 border-cyan-400 bg-cyan-400/10"
-                    : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
+                ${isActive
+                  ? "text-cyan-400 border-r-2 border-cyan-400 bg-cyan-400/10"
+                  : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
                 }
               `}
             >

@@ -5,7 +5,7 @@ import { Zap, Route, Anchor, ArrowLeftRight, Circle } from "lucide-react";
 import SimilarityModal from "@/components/SimilarityModal";
 
 /* ─── Constants ─── */
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://pratamuy-efhub-backend-api.hf.space";
 
 const tactics = [
   { id: "quick_counter", label: "Quick Counter", icon: Zap },
@@ -58,11 +58,10 @@ function StatBar({ stat }: { stat: PlayerStat }) {
       </div>
       <div className="h-1.5 w-full bg-m3-primary-container rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${
-            stat.color === "gold"
+          className={`h-full rounded-full transition-all duration-500 ${stat.color === "gold"
               ? "bg-gradient-to-r from-[#fabd00] to-[#ffd000]"
               : "bg-efhub-cyan"
-          }`}
+            }`}
           style={{ width: `${stat.value}%` }}
         />
       </div>
@@ -96,11 +95,10 @@ function PlayerCard({
               {player.position}
             </span>
             <span
-              className={`font-[var(--font-label)] text-[10px] font-bold tracking-[0.08em] px-2 py-1 rounded-full border ${
-                playstyleColor === "gold"
+              className={`font-[var(--font-label)] text-[10px] font-bold tracking-[0.08em] px-2 py-1 rounded-full border ${playstyleColor === "gold"
                   ? "bg-efhub-amber/10 text-efhub-amber border-efhub-amber/30"
                   : "bg-efhub-cyan/10 text-efhub-cyan border-efhub-cyan/30"
-              }`}
+                }`}
             >
               {player.playstyle}
             </span>
@@ -245,11 +243,10 @@ export default function RecommenderPage() {
               <button
                 key={t.id}
                 onClick={() => setActiveTactic(t.id)}
-                className={`glass-panel-level-1 py-3 px-4 rounded-sm font-[var(--font-label)] text-xs font-bold tracking-[0.08em] uppercase flex items-center justify-center gap-2 transition-all ${
-                  isActive
+                className={`glass-panel-level-1 py-3 px-4 rounded-sm font-[var(--font-label)] text-xs font-bold tracking-[0.08em] uppercase flex items-center justify-center gap-2 transition-all ${isActive
                     ? "text-efhub-cyan border-efhub-cyan ai-pulse"
                     : "text-m3-on-surface-variant hover:border-efhub-cyan"
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 {t.label}
@@ -266,11 +263,10 @@ export default function RecommenderPage() {
             <button
               key={l.id}
               onClick={() => setActiveLine(l.id)}
-              className={`pb-1 border-b-2 font-[var(--font-display)] text-2xl font-semibold whitespace-nowrap transition-colors ${
-                activeLine === l.id
+              className={`pb-1 border-b-2 font-[var(--font-display)] text-2xl font-semibold whitespace-nowrap transition-colors ${activeLine === l.id
                   ? "border-efhub-cyan text-efhub-cyan"
                   : "border-transparent text-m3-on-surface-variant hover:text-m3-on-surface"
-              }`}
+                }`}
             >
               {l.label}
             </button>

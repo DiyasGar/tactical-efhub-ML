@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       const reqLini = lini || "depan";
 
       try {
-        const backendRes = await fetch("http://127.0.0.1:8000/get-players", {
+        const backendRes = await fetch("https://pratamuy-efhub-backend-api.hf.space/get-players", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ taktik: reqTaktik, lini: reqLini }),

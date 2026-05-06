@@ -11,7 +11,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/", { cache: "no-store" });
+        const res = await fetch("https://pratamuy-efhub-backend-api.hf.space/", { cache: "no-store" });
         setIsServerOnline(res.ok);
       } catch (error) {
         setIsServerOnline(false);

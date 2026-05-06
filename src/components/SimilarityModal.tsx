@@ -57,7 +57,7 @@ function calculateRadarPoints(stats: any[]) {
   const centerX = 200;
   const centerY = 200;
   const maxRadius = 120;
-  
+
   return stats.map((statObj, i) => {
     const statValue = typeof statObj === "number" ? statObj : (statObj?.value || 0);
     const angle = (Math.PI * 2 * i) / 6 - Math.PI / 2;
@@ -69,7 +69,7 @@ function calculateRadarPoints(stats: any[]) {
 }
 
 /* ─── API Config ─── */
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://pratamuy-efhub-backend-api.hf.space";
 const API_ENDPOINT = `${API_BASE_URL}/find-alternatives`;
 
 /* ─── Match Color Utility ─── */
@@ -241,7 +241,7 @@ export default function SimilarityModal({
       } else {
         setEmptyMsg(
           data.message ||
-            "Tidak ada pemain alternatif ditemukan. Coba perluas toleransi OVR atau nonaktifkan filter Base Cards Only."
+          "Tidak ada pemain alternatif ditemukan. Coba perluas toleransi OVR atau nonaktifkan filter Base Cards Only."
         );
       }
     } catch (error) {
@@ -362,17 +362,17 @@ export default function SimilarityModal({
                 <polygon className="fill-efhub-cyan/20 stroke-efhub-cyan stroke-2" points={dynamicPoints} />
               ) : null}
               {/* Labels */}
-              {(validStats.length > 0 ? validStats : Array(6).fill({label: "N/A"})).map((stat, i) => {
+              {(validStats.length > 0 ? validStats : Array(6).fill({ label: "N/A" })).map((stat, i) => {
                 const angle = (Math.PI * 2 * i) / 6 - Math.PI / 2;
                 const labelRadius = 120 + 25;
                 const x = 200 + labelRadius * Math.cos(angle);
                 const y = 200 + labelRadius * Math.sin(angle);
-                
+
                 let anchor: "start" | "middle" | "end" = "middle";
                 if (Math.abs(x - 200) > 10) {
                   anchor = x < 200 ? "end" : "start";
                 }
-                
+
                 return (
                   <text
                     key={`label-${i}`}
@@ -441,18 +441,16 @@ export default function SimilarityModal({
                     onChange={(e) => setBaseCardsOnly(e.target.checked)}
                   />
                   <div
-                    className={`block w-10 h-6 rounded-full border transition-colors ${
-                      baseCardsOnly
+                    className={`block w-10 h-6 rounded-full border transition-colors ${baseCardsOnly
                         ? "bg-efhub-cyan/20 border-efhub-cyan/50"
                         : "bg-m3-surface-variant border-white/10"
-                    }`}
+                      }`}
                   />
                   <div
-                    className={`dot absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-200 ${
-                      baseCardsOnly
+                    className={`dot absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-200 ${baseCardsOnly
                         ? "translate-x-4 bg-efhub-cyan"
                         : "translate-x-0 bg-m3-outline"
-                    }`}
+                      }`}
                   />
                 </div>
               </label>
@@ -487,9 +485,8 @@ export default function SimilarityModal({
             <button
               onClick={handleGenerate}
               disabled={isLoading}
-              className={`w-full bg-efhub-amber hover:bg-m3-secondary-fixed text-m3-on-secondary-fixed font-[var(--font-label)] text-xs font-bold tracking-[0.08em] uppercase py-3 rounded-lg shadow-[0_4px_14px_rgba(250,189,0,0.2)] transition-all flex items-center justify-center gap-1 mt-1 ${
-                isLoading ? "opacity-70 cursor-wait" : ""
-              }`}
+              className={`w-full bg-efhub-amber hover:bg-m3-secondary-fixed text-m3-on-secondary-fixed font-[var(--font-label)] text-xs font-bold tracking-[0.08em] uppercase py-3 rounded-lg shadow-[0_4px_14px_rgba(250,189,0,0.2)] transition-all flex items-center justify-center gap-1 mt-1 ${isLoading ? "opacity-70 cursor-wait" : ""
+                }`}
             >
               {isLoading ? (
                 <>
@@ -577,17 +574,17 @@ export default function SimilarityModal({
                   <div className="flex gap-2 mt-3 w-full flex-shrink-0">
                     {/* Show Less Button: Only appears if we are showing more than the initial 3 */}
                     {visibleCount > 3 && (
-                      <button 
+                      <button
                         onClick={() => setVisibleCount(prev => Math.max(3, prev - 10))}
                         className="flex-1 py-2 text-sm font-semibold text-slate-400 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-lg transition-colors"
                       >
                         Show Less
                       </button>
                     )}
-                    
+
                     {/* View More Button: Only appears if there are still more players to show */}
                     {visibleCount < filteredAlternatives.length && (
-                      <button 
+                      <button
                         onClick={() => setVisibleCount(prev => prev + 10)}
                         className="flex-1 py-2 text-sm font-semibold text-cyan-400 bg-cyan-900/20 hover:bg-cyan-900/40 border border-cyan-500/30 rounded-lg transition-colors"
                       >

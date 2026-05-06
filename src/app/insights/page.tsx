@@ -5,27 +5,27 @@ import { Cpu, TrendingUp, Layers, Grid3X3, Network } from "lucide-react";
 
 /* ─── Constants ─── */
 const INTENSITY_MAP: Record<string, { bg: string; text: string }> = {
-  high:    { bg: "bg-cyan-400",  text: "text-slate-900 font-bold" },
-  medhigh: { bg: "bg-cyan-600",  text: "text-white/90" },
-  med:     { bg: "bg-cyan-900",  text: "text-white/70" },
-  low:     { bg: "bg-slate-600", text: "text-white/50" },
-  vlow:    { bg: "bg-slate-800", text: "text-white/30" },
+  high: { bg: "bg-cyan-400", text: "text-slate-900 font-bold" },
+  medhigh: { bg: "bg-cyan-600", text: "text-white/90" },
+  med: { bg: "bg-cyan-900", text: "text-white/70" },
+  low: { bg: "bg-slate-600", text: "text-white/50" },
+  vlow: { bg: "bg-slate-800", text: "text-white/30" },
 };
 
 const ATTRIBUTES = ["Pace", "Shooting", "Passing", "Dribbling", "Defending", "Physical"];
 
 const TACTICS = [
   { id: "long_ball_counter", label: "Long Ball Counter" },
-  { id: "quick_counter",     label: "Quick Counter" },
-  { id: "possession",        label: "Possession" },
-  { id: "out_wide",          label: "Out Wide" },
-  { id: "long_ball",         label: "Long Ball" },
+  { id: "quick_counter", label: "Quick Counter" },
+  { id: "possession", label: "Possession" },
+  { id: "out_wide", label: "Out Wide" },
+  { id: "long_ball", label: "Long Ball" },
 ];
 
 const LINES = [
-  { lini: "depan",   label: "Forwards (Depan)" },
-  { lini: "tengah",  label: "Midfield (Tengah)" },
-  { lini: "belakang",label: "Defence (Belakang)" },
+  { lini: "depan", label: "Forwards (Depan)" },
+  { lini: "tengah", label: "Midfield (Tengah)" },
+  { lini: "belakang", label: "Defence (Belakang)" },
 ];
 
 /* ─── Helper: average a named stat across all players ─── */
@@ -62,7 +62,7 @@ export default function InsightsPage() {
 
     Promise.all(
       LINES.map(line =>
-        fetch("http://127.0.0.1:8000/get-players", {
+        fetch("https://pratamuy-efhub-backend-api.hf.space/get-players", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ taktik: activeTactic, lini: line.lini }),
@@ -85,12 +85,12 @@ export default function InsightsPage() {
   /* ─── Derive heatmap rows from clusterData ─── */
   const heatmapData = useMemo(() => {
     return clusterData.map(data => {
-      const pace      = avgStat(data.players, "PACE");
-      const shooting  = avgStat(data.players, "SHOOTING");
-      const passing   = avgStat(data.players, "PASSING");
+      const pace = avgStat(data.players, "PACE");
+      const shooting = avgStat(data.players, "SHOOTING");
+      const passing = avgStat(data.players, "PASSING");
       const dribbling = avgStat(data.players, "DRIBBLING");
       const defending = avgStat(data.players, "DEFENDING");
-      const physical  = avgStat(data.players, "PHYSICAL");
+      const physical = avgStat(data.players, "PHYSICAL");
 
       return {
         label: data.label,
@@ -158,11 +158,10 @@ export default function InsightsPage() {
           <button
             key={t.id}
             onClick={() => setActiveTactic(t.id)}
-            className={`px-4 py-2 rounded-full border font-[var(--font-label)] text-sm font-bold tracking-[0.06em] transition-all duration-200 ${
-              activeTactic === t.id
+            className={`px-4 py-2 rounded-full border font-[var(--font-label)] text-sm font-bold tracking-[0.06em] transition-all duration-200 ${activeTactic === t.id
                 ? "border-efhub-cyan bg-efhub-cyan/10 text-efhub-cyan shadow-[0_0_12px_rgba(0,219,234,0.3)]"
                 : "border-white/10 text-m3-on-surface-variant hover:border-white/30 hover:text-m3-on-surface"
-            }`}
+              }`}
           >
             {t.label}
           </button>
